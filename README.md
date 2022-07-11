@@ -12,6 +12,10 @@ DVC project For Deep Learning Use Case Using tensorflow
 ```bash
 conda create --prefix ./env python=3.7 -y
 ```
+If bash gives some weird names then run this command . 
+```bash
+conda config --set env_prompt '({name})'
+```
 
 ```bash
 conda activate ./env
