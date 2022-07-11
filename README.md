@@ -1,4 +1,4 @@
-# dvc-project-template
+# dvc-project-tensorflow
 DVC project For Deep Learning Use Case Using tensorflow
 
 ## STEPS -
