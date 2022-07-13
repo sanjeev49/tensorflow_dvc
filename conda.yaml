@@ -1,0 +1,4 @@
+name: D:\work\tensorflow_dvc\env
+channels:
+  - defaults
+prefix: D:\work\tensorflow_dvc\env

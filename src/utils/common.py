@@ -1,4 +1,5 @@
 import os
+import shutil
 import yaml
 import logging
 import time
@@ -15,6 +16,18 @@ def create_directories(path_to_directories: list) -> None:
     for path in path_to_directories:
         os.makedirs(path, exist_ok=True)
         logging.info(f"created directory at: {path}")
+
+def copy_files(source_download_dir: str, local_data_dir: str) -> None:
+    list_of_files = os.listdir(source_download_dir)
+    N = len(list_of_files)
+
+    for file in list_of_files:
+        src = os.path.join(source_download_dir, file)
+        dest = os.path.join(local_data_dir, file)
+
+        shutil.copy(src, dest)
+
+    logging.info(f"The copy of {N} Successeded")
 
 
 def save_json(path: str, data: dict) -> None:
