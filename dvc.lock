@@ -1,0 +1,25 @@
+schema: '2.0'
+stages:
+  get_data:
+    cmd: python src/stage_01_get_data.py
+    deps:
+    - path: ../outside_data
+      md5: 0a942d4408e2c885772b0d0e25918c6f.dir
+      size: 4470476
+      nfiles: 21
+    - path: ../outside_data/Cat
+      md5: 1be058be5be52ad3d3d5a8017b5c73bd.dir
+      size: 2285388
+      nfiles: 11
+    - path: ../outside_data/Dog
+      md5: 17b2c1313c76dacd0ad8ab895d2ec946.dir
+      size: 2185088
+      nfiles: 10
+    - path: src/stage_01_get_data.py
+      md5: 140802f0527cadcd728b71281b14a1b5
+      size: 1458
+    outs:
+    - path: data
+      md5: d683a85e8ceac8e461ef4e7aa129c20b.dir
+      size: 4470476
+      nfiles: 21

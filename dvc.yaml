@@ -1,8 +1,11 @@
 # add stages here 
-# stages:
-#   stage_name:
-#     cmd: python src/stage_01______.py
-#     deps:
-#     - src/stage_01______.py
-#     outs:
-#     - output_data_of_file_path
+ stages:
+   get_data:
+     cmd: python src/stage_01_get_data.py
+     deps:
+     - src/stage_01_get_data.py
+     - ../outside_data
+     - ../outside_data/Cat
+     - ../outside_data/Dog
+     outs:
+     - data

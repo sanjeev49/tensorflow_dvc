@@ -14,16 +14,9 @@ logging.basicConfig(
 )
 
 
-def get_data(config_path, params_path):
-    # read config files
+def prepare_base_model(config_path, params_path):
     config = read_yaml(config_path)
-    source_download_dirs = config["source_download_dirs"]
-    local_data_dirs = config["local_data_dirs"]
-
-    for source_download_dir, local_data_dir in tqdm(zip(source_download_dirs, local_data_dirs), total=2,
-                                                    desc="list of folders", colour="red"):
-        create_directories([local_data_dir])
-        copy_files(source_download_dir, local_data_dir)
+    params = read_yaml(params_path)
 
 
 if __name__ == '__main__':
@@ -35,7 +28,7 @@ if __name__ == '__main__':
     try:
         logging.info("\n********************")
         logging.info(f">>>>> stage {STAGE} started <<<<<")
-        get_data(config_path=parsed_args.config, params_path=parsed_args.params)
+        prepare_base_model(config_path=parsed_args.config, params_path=parsed_args.params)
         logging.info(f">>>>> stage {STAGE} completed!<<<<<\n")
     except Exception as e:
         logging.exception(e)
