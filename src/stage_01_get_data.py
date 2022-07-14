@@ -7,7 +7,7 @@ from src.utils.common import read_yaml, create_directories, copy_files
 import random
 
 
-STAGE = "get_data" ## <<< change stage name 
+STAGE = "get_data"
 
 logging.basicConfig(
     filename=os.path.join("logs", 'running_logs.log'), 
@@ -20,7 +20,6 @@ logging.basicConfig(
 def get_data(config_path, params_path):
     ## read config files
     config = read_yaml(config_path)
-    params = read_yaml(params_path)
     source_download_dirs = config["source_download_dirs"]
     local_data_dirs = config["local_data_dirs"]
 

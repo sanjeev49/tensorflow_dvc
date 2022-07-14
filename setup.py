@@ -7,7 +7,7 @@ with open("README.md", "r", encoding="utf-8") as f:
 REPO_NAME = "tensorflow_dvc"
 AUTHOR_USER_NAME = "sanjeev49"
 SRC_REPO = "src"
-LIST_OF_REQUIREMENTS = []
+LIST_OF_REQUIREMENTS = ["dvc", "boto3", "tensorflow", "numpy", "pandas", "tqdm", "PyYAML", "boto3"]
 
 
 setup(
