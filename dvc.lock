@@ -23,3 +23,13 @@ stages:
       md5: d683a85e8ceac8e461ef4e7aa129c20b.dir
       size: 4470476
       nfiles: 21
+  prepare_data:
+    cmd: python src/stage_02_prepare_base_model.py
+    deps:
+    - path: src/stage_02_prepare_base_model.py
+      md5: 5d00f6fe411e5ff78c0bcfc416cec4af
+      size: 2238
+    outs:
+    - path: logs/running_logs.log
+      md5: 671dea4362ed38538ff5664dd2945848
+      size: 4161

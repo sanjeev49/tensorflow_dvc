@@ -22,7 +22,7 @@ def create_directories(path_to_directories: list) -> None:
 
 def copy_files(source_download_dir: str, local_data_dir: str) -> None:
     list_of_files = os.listdir(source_download_dir)
-    N = len(list_of_files)
+    n = len(list_of_files)
 
     for file in list_of_files:
         src = os.path.join(source_download_dir, file)
@@ -30,7 +30,7 @@ def copy_files(source_download_dir: str, local_data_dir: str) -> None:
 
         shutil.copy(src, dest)
 
-    logging.info(f"The copy of {N} Succeeded")
+    logging.info(f"The copy of {n} Succeeded")
 
 
 def save_json(path: str, data: dict) -> None:

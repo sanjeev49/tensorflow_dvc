@@ -9,3 +9,9 @@
      - ../outside_data/Dog
      outs:
      - data
+   prepare_data:
+     cmd: python src/stage_02_prepare_base_model.py
+     deps:
+     -  src/stage_02_prepare_base_model.py
+     outs:
+     -  logs/running_logs.log

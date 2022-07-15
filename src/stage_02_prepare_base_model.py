@@ -1,10 +1,11 @@
 import argparse
 import os
-from tqdm import tqdm
 import logging
-from src.utils.common import read_yaml, create_directories, copy_files
+from src.utils.common import read_yaml, create_directories
+from src.utils.models import get_vgg16_model, prepare_model
+import io
 
-STAGE = "get_data"
+STAGE = "prepare_data"
 
 logging.basicConfig(
     filename=os.path.join("logs", 'running_logs.log'),
@@ -26,9 +27,25 @@ def prepare_base_model(config_path, params_path):
     base_model_dir_path = os.path.join(artifacts_dir, base_model_dir)
 
     create_directories([base_model_dir_path])
-
     base_model_path = os.path.join(base_model_dir_path, base_model_name)
-    model = get_VGG_16_model(input_shape=params["IMAGE_SIZE"], model_path)
+    model = get_vgg16_model(input_shape=params["IMAGE_SIZE"], model_path=base_model_path)
+
+    full_model = prepare_model(
+        model,
+        classes=params["CLASSES"],
+        freeze_all=False,
+        freeze_till=2,
+        learning_rate=params["LEARNING_RATE"]
+    )
+    updated_base_model_path = os.path.join(base_model_dir_path, artifacts["UPDATED_BASE_MODEL_NAME"])
+
+    def _log_model_summary(model):
+        with io.StringIO() as stream:
+            model.summary(print_fn = lambda x: stream.write(f"{x}\n"))
+            summary_str = stream.getvalue()
+        return summary_str
+    logging.info(f"full model summary: \n{_log_model_summary(full_model)}")
+    full_model.save(updated_base_model_path)
 
 
 
