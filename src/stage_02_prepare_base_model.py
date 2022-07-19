@@ -39,9 +39,9 @@ def prepare_base_model(config_path, params_path):
     )
     updated_base_model_path = os.path.join(base_model_dir_path, artifacts["UPDATED_BASE_MODEL_NAME"])
 
-    def _log_model_summary(model):
+    def _log_model_summary(model_param):
         with io.StringIO() as stream:
-            model.summary(print_fn = lambda x: stream.write(f"{x}\n"))
+            model_param.summary(print_fn = lambda x: stream.write(f"{x}\n"))
             summary_str = stream.getvalue()
         return summary_str
     logging.info(f"full model summary: \n{_log_model_summary(full_model)}")
