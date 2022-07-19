@@ -1,11 +1,11 @@
 ### dependency
-tqdm
-dvc
-pandas
-numpy
-PyYAML
+tqdm==4.6.0
+dvc==2.10.2
+pandas==1.3.5
+numpy==1.19.5
+PyYAML==6.0
 tensorflow==2.5.0
-joblib
+joblib==1.1.0
 
 ### local packages -
 -e . # << uncomment this to install from setup.py

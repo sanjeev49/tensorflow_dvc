@@ -30,6 +30,9 @@ stages:
       md5: 5fc26d02bb4f57b577e3dbda52b4a7ec
       size: 2250
     outs:
-    - path: logs/running_logs.log
-      md5: ac588afa18254a3cef3f6bf77d1f182e
-      size: 4161
+    - path: artifacts/base_model/base_model.h5
+      md5: 338e617bd38ea906f302c2045196f833
+      size: 58920272
+    - path: artifacts/base_model/updated_base_model.h5
+      md5: 78e61be2427d549b10bdaa233aa92eec
+      size: 58920288

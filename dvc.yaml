@@ -14,4 +14,5 @@
      deps:
      -  src/stage_02_prepare_base_model.py
      outs:
-     -  logs/running_logs.log
+     -  artifacts/base_model/base_model.h5
+     -  artifacts/base_model/updated_base_model.h5
