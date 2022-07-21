@@ -1,18 +1,35 @@
-# add stages here 
- stages:
-   get_data:
-     cmd: python src/stage_01_get_data.py
-     deps:
-     - src/stage_01_get_data.py
-     - ../outside_data
-     - ../outside_data/Cat
-     - ../outside_data/Dog
-     outs:
-     - data
-   prepare_data:
-     cmd: python src/stage_02_prepare_base_model.py
-     deps:
-     -  src/stage_02_prepare_base_model.py
-     outs:
-     -  artifacts/base_model/base_model.h5
-     -  artifacts/base_model/updated_base_model.h5
+stages:
+  load_data:
+    cmd: python src/stage_01_get_data.py
+    deps: 
+      - src/stage_01_get_data.py
+      - src/utils/common.py
+      - configs/config.yaml
+    outs:
+      - data
+
+  prepare_base_model:
+    cmd: python src/stage_02_prepare_base_model.py
+    deps: 
+      - src/stage_02_prepare_base_model.py
+      - src/utils/common.py
+      - src/utils/models.py
+      - configs/config.yaml
+    params:
+      - IMAGE_SIZE
+      - LEARNING_RATE
+    outs:
+      - artifacts/base_model/updated_base_model.h5
+      - artifacts/base_model/base_model.h5
+
+  prepare_callbacks:
+    cmd: python src/stage_03_prepare_callbacks.py
+    deps: 
+      - src/stage_03_prepare_callbacks.py
+      - src/utils/common.py
+      - src/utils/callbacks.py
+      - configs/config.yaml
+      - params.yaml
+    outs:
+      - artifacts/callbacks/checkpoint_cb.cb
+      - artifacts/callbacks/tensorboard_cb.cb

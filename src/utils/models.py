@@ -46,3 +46,6 @@ def prepare_model(model, classes, freeze_all, freeze_till, learning_rate):
         metrics=["accuracy"])
     logging.info("Custom model is compiled and ready to be trained")
     return model
+
+def load_full_model():
+    pass

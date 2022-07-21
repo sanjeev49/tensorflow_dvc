@@ -36,3 +36,74 @@ stages:
     - path: artifacts/base_model/updated_base_model.h5
       md5: 78e61be2427d549b10bdaa233aa92eec
       size: 58920288
+  prepare_callbacks:
+    cmd: python src/stage_03_prepare_callbacks.py
+    deps:
+    - path: configs/config.yaml
+      md5: 438f0098e1c66a2b65c45f667cd13f02
+      size: 502
+    - path: params.yaml
+      md5: 169eda98b51d0994a6f82ec87bab4b2d
+      size: 199
+    - path: src/stage_03_prepare_callbacks.py
+      md5: b0a125998f2a8ad991d9ea9567a3c9f5
+      size: 1856
+    - path: src/utils/callbacks.py
+      md5: 79ae7583c012da6a6adffaa15f32119d
+      size: 1141
+    - path: src/utils/common.py
+      md5: 9ec8d85555b7c0b7bda2004dad3d8806
+      size: 1223
+    outs:
+    - path: artifacts/callbacks/checkpoint_cb.cb
+      md5: fa4abcae7e340415ddfaabd96efa85bb
+      size: 869
+    - path: artifacts/callbacks/tensorboard_cb.cb
+      md5: 87d04f9e9d974c8c5cb25aea8771f648
+      size: 682
+  prepare_base_model:
+    cmd: python src/stage_02_prepare_base_model.py
+    deps:
+    - path: configs/config.yaml
+      md5: 438f0098e1c66a2b65c45f667cd13f02
+      size: 502
+    - path: src/stage_02_prepare_base_model.py
+      md5: 5fc26d02bb4f57b577e3dbda52b4a7ec
+      size: 2250
+    - path: src/utils/common.py
+      md5: 9ec8d85555b7c0b7bda2004dad3d8806
+      size: 1223
+    - path: src/utils/models.py
+      md5: 65660523d2a0cd05b0cb2c495768457a
+      size: 1466
+    params:
+      params.yaml:
+        IMAGE_SIZE:
+        - 224
+        - 224
+        - 3
+        LEARNING_RATE: 0.001
+    outs:
+    - path: artifacts/base_model/base_model.h5
+      md5: 914d62dfe58a2d6ff811fc7ba4c08d4b
+      size: 58920272
+    - path: artifacts/base_model/updated_base_model.h5
+      md5: 8695862aa8da101d0c383a0ecb3d5daa
+      size: 58920288
+  load_data:
+    cmd: python src/stage_01_get_data.py
+    deps:
+    - path: configs/config.yaml
+      md5: 438f0098e1c66a2b65c45f667cd13f02
+      size: 502
+    - path: src/stage_01_get_data.py
+      md5: 140802f0527cadcd728b71281b14a1b5
+      size: 1458
+    - path: src/utils/common.py
+      md5: 9ec8d85555b7c0b7bda2004dad3d8806
+      size: 1223
+    outs:
+    - path: data
+      md5: d683a85e8ceac8e461ef4e7aa129c20b.dir
+      size: 4470476
+      nfiles: 21
