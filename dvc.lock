@@ -1,0 +1,73 @@
+schema: '2.0'
+stages:
+  load_data:
+    cmd: python src/stage_01_get_data.py
+    deps:
+    - path: configs/config.yaml
+      md5: 1ca95beb6ae9d59e1e2d20cb3123f48a
+      size: 492
+    - path: src/stage_01_get_data.py
+      md5: 140802f0527cadcd728b71281b14a1b5
+      size: 1458
+    - path: src/utils/common.py
+      md5: 9ec8d85555b7c0b7bda2004dad3d8806
+      size: 1223
+    outs:
+    - path: data
+      md5: d683a85e8ceac8e461ef4e7aa129c20b.dir
+      size: 4470476
+      nfiles: 21
+  prepare_callbacks:
+    cmd: python src/stage_03_prepare_callbacks.py
+    deps:
+    - path: configs/config.yaml
+      md5: 1ca95beb6ae9d59e1e2d20cb3123f48a
+      size: 492
+    - path: params.yaml
+      md5: 169eda98b51d0994a6f82ec87bab4b2d
+      size: 199
+    - path: src/stage_03_prepare_callbacks.py
+      md5: b0a125998f2a8ad991d9ea9567a3c9f5
+      size: 1856
+    - path: src/utils/callbacks.py
+      md5: 79ae7583c012da6a6adffaa15f32119d
+      size: 1141
+    - path: src/utils/common.py
+      md5: 9ec8d85555b7c0b7bda2004dad3d8806
+      size: 1223
+    outs:
+    - path: artifacts/callbacks/checkpoint_cb.cb
+      md5: fa4abcae7e340415ddfaabd96efa85bb
+      size: 869
+    - path: artifacts/callbacks/tensorboard_cb.cb
+      md5: 682838ca3ad0a16bf064df45a2deeff3
+      size: 682
+  prepare_base_model:
+    cmd: python src/stage_02_prepare_base_model.py
+    deps:
+    - path: configs/config.yaml
+      md5: 1ca95beb6ae9d59e1e2d20cb3123f48a
+      size: 492
+    - path: src/stage_02_prepare_base_model.py
+      md5: 5fc26d02bb4f57b577e3dbda52b4a7ec
+      size: 2250
+    - path: src/utils/common.py
+      md5: 9ec8d85555b7c0b7bda2004dad3d8806
+      size: 1223
+    - path: src/utils/models.py
+      md5: 64887b7de425c3bd1ca712cb7b4b0260
+      size: 1502
+    params:
+      params.yaml:
+        IMAGE_SIZE:
+        - 224
+        - 224
+        - 3
+        LEARNING_RATE: 0.001
+    outs:
+    - path: artifacts/base_model/updated_vgg16.h5
+      md5: 5d0dea20399dc070dde307c72231bf15
+      size: 58920288
+    - path: artifacts/base_model/vgg16.h5
+      md5: ecdcc8f2f1aafff5d735245fe5644168
+      size: 58920272
