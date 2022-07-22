@@ -19,8 +19,8 @@ stages:
       - IMAGE_SIZE
       - LEARNING_RATE
     outs:
-      - artifacts/base_model/updated_base_model.h5
-      - artifacts/base_model/base_model.h5
+      - artifacts/base_model/vgg16.h5
+      - artifacts/base_model/updated_vgg16.h5
 
   prepare_callbacks:
     cmd: python src/stage_03_prepare_callbacks.py

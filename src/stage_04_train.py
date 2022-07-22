@@ -2,8 +2,8 @@ import argparse
 import os
 import logging
 from src.utils.common import read_yaml, create_directories
-from src.utils.model import load_full_model
-import random
+from src.utils.models import load_full_model
+from src.utils.callbacks import get_callbacks
 
 
 STAGE = "train_model" ## <<< change stage name 
@@ -17,7 +17,7 @@ logging.basicConfig(
 
 
 def train_model(config_path, params_path):
-    ## read config files
+    # read config files
     config = read_yaml(config_path)
     params = read_yaml(params_path)
     artirfacts =  config["artifacts"]
@@ -33,7 +33,6 @@ def train_model(config_path, params_path):
     callback_dir_path = os.path.join(artifacts_dir, artirfacts["CALLBACKS_DIR"])
 
     callbacks = get_callbacks(callback_dir_path)
-
 
 
 if __name__ == '__main__':
